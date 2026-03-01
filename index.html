@@ -469,26 +469,43 @@ function placeModelCloud(containerId) {
   const modelCx = mcx + mw / 2;
   const modelCy = mcy + mh / 2;
 
-  // 2. Place Bayesian inference and AI first (prominent, guaranteed placement)
-  // Try multiple fixed zones so they always appear
-  const prominentWords = [
-    { text: 'Bayesian inference', size: 30, weight: 700, color: rp(modelPalette.white) },
-    { text: 'AI',                 size: 44, weight: 800, color: rp(modelPalette.gold)  },
-  ];
-  const zones = [
-    [W*0.18, H*0.25], [W*0.75, H*0.22], [W*0.15, H*0.72], [W*0.72, H*0.72],
-    [W*0.5, H*0.15],  [W*0.5, H*0.82],  [W*0.1, H*0.5],   [W*0.88, H*0.5],
-  ];
-  let zoneIdx = 0;
-  for (const w of prominentWords) {
-    const el = makeEl(w.text, w.size, w.weight, w.color, 1);
-    let placed_ok = false;
-    for (let zi = zoneIdx; zi < zones.length; zi++) {
-      const result = tryPlace(el, zones[zi][0], zones[zi][1], 60, 0.8);
-      if (result) { zoneIdx = zi + 1; placed_ok = true; break; }
-    }
-    if (!placed_ok) tryPlace(el, W * Math.random(), H * Math.random(), 400, 0.7);
-  }
+ // 2. Place "Bayesian / inference" stacked diagonally on the left
+  const bayEl = makeEl('Bayesian', 30, 700, rp(modelPalette.white), 1);
+  const bw = bayEl.offsetWidth, bh = bayEl.offsetHeight;
+  const bayX = W * 0.05;   // ← left side, adjust to move left/right
+  const bayY = H * 0.2;    // ← adjust to move up/down
+  bayEl.style.left = bayX + 'px';
+  bayEl.style.top  = bayY + 'px';
+  bayEl.style.visibility = 'visible';
+  placed.push({ x: bayX, y: bayY, w: bw, h: bh });
+
+  const infEl = makeEl('inference', 30, 700, rp(modelPalette.white), 1);
+  const iw = infEl.offsetWidth, ih = infEl.offsetHeight;
+  const infX = bayX + 20;  // ← how far right the second word is offset (diagonal amount)
+  const infY = bayY + bh + 2; // ← gap between the two words
+  infEl.style.left = infX + 'px';
+  infEl.style.top  = infY + 'px';
+  infEl.style.visibility = 'visible';
+  placed.push({ x: infX, y: infY, w: iw, h: ih });
+
+  // 2b. Place "Artificial / Intelligence" stacked diagonally — also left, below Bayesian
+  const artEl = makeEl('Artificial', 44, 800, rp(modelPalette.gold), 1);
+  const aw = artEl.offsetWidth, ah = artEl.offsetHeight;
+  const artX = W * 0.05;   // ← align with Bayesian, adjust as needed
+  const artY = H * 0.55;   // ← adjust to move up/down
+  artEl.style.left = artX + 'px';
+  artEl.style.top  = artY + 'px';
+  artEl.style.visibility = 'visible';
+  placed.push({ x: artX, y: artY, w: aw, h: ah });
+
+  const intEl = makeEl('Intelligence', 44, 800, rp(modelPalette.gold), 1);
+  const ntw = intEl.offsetWidth, nth = intEl.offsetHeight;
+  const intX = artX + 20;  // ← diagonal offset amount
+  const intY = artY + ah + 2;
+  intEl.style.left = intX + 'px';
+  intEl.style.top  = intY + 'px';
+  intEl.style.visibility = 'visible';
+  placed.push({ x: intX, y: intY, w: ntw, h: nth });
 
   // 3. Orbital model-type words — placed spiralling close to 'models'
   const orbitalWords = [
