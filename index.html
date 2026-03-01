@@ -229,36 +229,11 @@
     <div class="charts-row">
 
       <div class="chart-card">
-        <div class="chart-title">Spatial Map</div>
-        <div class="chart-body">
-          <svg viewBox="0 0 120 90" width="100%" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="8"  width="20" height="16" fill="#4393c3" rx="1"/>
-            <rect x="32" y="8"  width="20" height="16" fill="#92c5de" rx="1"/>
-            <rect x="54" y="8"  width="20" height="16" fill="#4393c3" rx="1"/>
-            <rect x="76" y="8"  width="20" height="16" fill="#2166ac" rx="1"/>
-            <rect x="10" y="26" width="20" height="16" fill="#92c5de" rx="1"/>
-            <rect x="32" y="26" width="20" height="16" fill="#fee08b" rx="1"/>
-            <rect x="54" y="26" width="20" height="16" fill="#f46d43" rx="1"/>
-            <rect x="76" y="26" width="20" height="16" fill="#74add1" rx="1"/>
-            <rect x="10" y="44" width="20" height="16" fill="#4393c3" rx="1"/>
-            <rect x="32" y="44" width="20" height="16" fill="#f46d43" rx="1"/>
-            <rect x="54" y="44" width="20" height="16" fill="#d73027" rx="1"/>
-            <rect x="76" y="44" width="20" height="16" fill="#fee08b" rx="1"/>
-            <rect x="10" y="62" width="20" height="16" fill="#2166ac" rx="1"/>
-            <rect x="32" y="62" width="20" height="16" fill="#74add1" rx="1"/>
-            <rect x="54" y="62" width="20" height="16" fill="#fee08b" rx="1"/>
-            <rect x="76" y="62" width="20" height="16" fill="#4393c3" rx="1"/>
-            <defs><linearGradient id="leg" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#2166ac"/>
-              <stop offset="50%" stop-color="#fee08b"/>
-              <stop offset="100%" stop-color="#d73027"/>
-            </linearGradient></defs>
-            <rect x="10" y="82" width="86" height="4" rx="2" fill="url(#leg)"/>
-            <text x="10" y="91" fill="#888" font-size="7" font-family="sans-serif">Low</text>
-            <text x="82" y="91" fill="#888" font-size="7" font-family="sans-serif">High</text>
-          </svg>
-        </div>
-      </div>
+  <div class="chart-title">Spatial Map</div>
+  <div class="chart-body">
+    <img src="J3_seg_occ2.png" alt="Spatial Map" style="width: 100%; display: block;">
+  </div>
+</div>
 
       <div class="chart-card">
         <div class="chart-title">Population Trend</div>
@@ -302,7 +277,7 @@
   <!-- FOOTER -->
   <div class="footer">
     <span class="footer-text">https://www.seresearch.qmul.ac.uk/cpsd/research/statisticalecology/</span>
-    <span class="footer-accent">QMUL · School of Mathematical Sciences</span>
+    <span class="footer-accent">QMUL · SMS</span>
   </div>
 
 </div>
@@ -491,7 +466,7 @@ function placeModelCloud(containerId) {
   // 2b. Place "Artificial / Intelligence" stacked diagonally — also left, below Bayesian
   const artEl = makeEl('Artificial', 44, 800, rp(modelPalette.gold), 1);
   const aw = artEl.offsetWidth, ah = artEl.offsetHeight;
-  const artX = W * 0.05;   // ← align with Bayesian, adjust as needed
+  const artX = W * 0.65;   // ← align with Bayesian, adjust as needed
   const artY = H * 0.55;   // ← adjust to move up/down
   artEl.style.left = artX + 'px';
   artEl.style.top  = artY + 'px';
