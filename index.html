@@ -460,11 +460,15 @@ if (x < 4 || x + ew > W - 4 || y < 4 || y + eh > H - 4) continue;
   placed.push({ x: intX, y: intY, w: ntw, h: nth });
 
 const orbitalWords = [
-    { text: 'hierarchical',    size: 22, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx + 60,  cy: modelCy - 30 },
-    { text: 'state-space',     size: 20, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx - 60,  cy: modelCy },
-    { text: 'spatio-temporal', size: 18, weight: 400, color: rp(modelPalette.lightBlue), cx: modelCx - 50,  cy: modelCy + 30 },
-    { text: 'mixture',         size: 19, weight: 500, color: rp(modelPalette.lightBlue), cx: modelCx + 50,  cy: modelCy },
+    { text: 'hierarchical',    size: 22, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx - 40, cy: modelCy - 35 },
+    { text: 'state-space',     size: 20, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx + 40, cy: modelCy - 35 },
+    { text: 'spatio-temporal', size: 18, weight: 400, color: rp(modelPalette.lightBlue), cx: modelCx - 40, cy: modelCy + 35 },
+    { text: 'mixture',         size: 19, weight: 500, color: rp(modelPalette.lightBlue), cx: modelCx + 40, cy: modelCy + 35 },
   ];
+  for (const w of orbitalWords) {
+    const el = makeEl(w.text, w.size, w.weight, w.color, 0.9);
+    tryPlace(el, w.cx, w.cy, 80, 0.7);
+  }
   for (const w of orbitalWords) {
     const el = makeEl(w.text, w.size, w.weight, w.color, 0.9);
     tryPlace(el, w.cx, w.cy, 80, 0.7);
