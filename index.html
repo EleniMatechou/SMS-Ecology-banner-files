@@ -459,16 +459,16 @@ if (x < 4 || x + ew > W - 4 || y < 4 || y + eh > H - 4) continue;
   intEl.style.visibility = 'visible';
   placed.push({ x: intX, y: intY, w: ntw, h: nth });
 
-  // 3. Orbital model-type words — placed spiralling close to 'models'
+  // 3. Orbital model-type words
   const orbitalWords = [
-    { text: 'hierarchical',   size: 22, weight: 600, color: rp(modelPalette.lightBlue) },
-    { text: 'state-space',    size: 20, weight: 600, color: rp(modelPalette.lightBlue) },
-    { text: 'spatio-temporal',size: 18, weight: 400, color: rp(modelPalette.lightBlue) },
-    { text: 'mixture',        size: 19, weight: 500, color: rp(modelPalette.lightBlue) },
+    { text: 'hierarchical',    size: 22, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx + 60 },
+    { text: 'state-space',     size: 20, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx - 60 },
+    { text: 'spatio-temporal', size: 18, weight: 400, color: rp(modelPalette.lightBlue), cx: modelCx - 50 },
+    { text: 'mixture',         size: 19, weight: 500, color: rp(modelPalette.lightBlue), cx: modelCx + 50 },
   ];
   for (const w of orbitalWords) {
     const el = makeEl(w.text, w.size, w.weight, w.color, 0.9);
-    tryPlace(el, modelCx, modelCy, 130, 0.7);
+    tryPlace(el, w.cx, modelCy, 80, 0.7);
   }
 }
 
