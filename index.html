@@ -307,8 +307,8 @@ function placeWords(containerId, words, bgDark) {
 const cx = W * 0.5;
 const cy = H * 0.5;
     let ok = false;
-    const PAD = 12;
-    const HPAD = 6;
+const PAD = 4;
+const HPAD = 4;;
 
     for (let step = 0; step < 600; step += 1.2) {
       const angle = step * 0.38 + Math.random() * 0.3;
@@ -397,7 +397,7 @@ function placeModelCloud(containerId) {
       const r = Math.min(step * 0.9, maxR);
       const x = cx + r * Math.cos(angle) - ew / 2;
       const y = cy + r * Math.sin(angle) * (yScale||0.6) - eh / 2;
-      if (x < 8 || x + ew > W - 8 || y < 6 || y + eh > H - 6) continue;
+if (x < 4 || x + ew > W - 4 || y < 4 || y + eh > H - 4) continue;
       const overlaps = placed.some(p =>
         x < p.x + p.w + 8 && x + ew + 8 > p.x &&
         y < p.y + p.h + 5 && y + eh + 5 > p.y
