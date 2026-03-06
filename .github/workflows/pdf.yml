@@ -12,7 +12,7 @@ jobs:
         with:
           htmlFile: ./index.html
           outputFile: ./banner.pdf
-          pdfOptions: '{"format": "A0", "printBackground": true, "margin": {"top": "0", "bottom": "0", "left": "0", "right": "0"}}'
+          pdfOptions: '{"width": "850mm", "height": "2000mm", "printBackground": true, "margin": {"top": "0", "bottom": "0", "left": "0", "right": "0"}}'
       - uses: actions/upload-artifact@v4
         with:
           name: banner-pdf
