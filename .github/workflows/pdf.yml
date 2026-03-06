@@ -17,13 +17,14 @@ jobs:
           (async () => {
             const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
             const page = await browser.newPage();
-            await page.setViewport({width: 600, height: 2000});
-            await page.goto('file://' + process.cwd() + '/index.html', {waitUntil: 'networkidle2', timeout: 10000});
+            await page.setViewport({width: 600, height: 3000, deviceScaleFactor: 2});
+            await page.goto('file://' + process.cwd() + '/index.html', {waitUntil: 'networkidle2'});
             await new Promise(r => setTimeout(r, 2000));
+            const height = await page.evaluate(() => document.body.scrollHeight);
             await page.pdf({
               path: 'banner.pdf',
               width: '600px',
-              height: '2000px',
+              height: height + 'px',
               printBackground: true,
               margin: {top: '0', bottom: '0', left: '0', right: '0'}
             });
