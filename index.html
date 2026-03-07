@@ -141,41 +141,35 @@ body {
   .footer-accent { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 1px; }
 
 /* ── PRINT ── */
-  @media print {
-    * { margin: 0 !important; padding: 0 !important; }
-    body { 
-      background: none;
-      padding: 0 !important;
-      display: block;
-    }
-    .banner {
-      width: 850mm;
-      box-shadow: none;
-      border-radius: 0;
-    }
-    @page {
-      size: 850mm 2000mm;
-      margin: 0;
-    }
+@media print {
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
   }
 
-  @media print {
-    body {
-      background: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      display: block !important;
-    }
-    .banner {
-      width: 100% !important;
-      box-shadow: none !important;
-      border-radius: 0 !important;
-      margin: 0 !important;
-    }
-    @page {
-      margin: 0;
-    }
+  body {
+    display: block !important;
   }
+
+  .banner {
+    width: 600px;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+
+    /* scale layout proportionally */
+    transform-origin: top left;
+    transform: scale(5.35);
+  }
+
+  @page {
+    size: 850mm 2000mm;
+    margin: 0;
+  }
+
+}
 </style>
 </head>
 <body>
