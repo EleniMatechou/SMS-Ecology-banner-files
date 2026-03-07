@@ -2,17 +2,26 @@ name: Export PDF
 on:
   push:
     branches: [main]
+
 jobs:
   export:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Convert HTML to PDF
         uses: fifsky/html-to-pdf-action@master
         with:
           htmlFile: ./index.html
           outputFile: ./banner.pdf
-          pdfOptions: '{"printBackground": true, "margin": {"top": "0", "bottom": "0", "left": "0", "right": "0"}}'
+          pdfOptions: >
+            {
+              "printBackground": true,
+              "width": "850mm",
+              "height": "2000mm",
+              "margin": {"top":"0","bottom":"0","left":"0","right":"0"}
+            }
+
       - uses: actions/upload-artifact@v4
         with:
           name: banner-pdf
