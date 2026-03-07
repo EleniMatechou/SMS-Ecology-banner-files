@@ -158,6 +158,24 @@ body {
       margin: 0;
     }
   }
+
+  @media print {
+    body {
+      background: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: block !important;
+    }
+    .banner {
+      width: 100% !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      margin: 0 !important;
+    }
+    @page {
+      margin: 0;
+    }
+  }
 </style>
 </head>
 <body>
