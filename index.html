@@ -141,6 +141,7 @@ body {
   .footer-accent { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 1px; }
 
 /* ── PRINT ── */
+/* ── PRINT ── */
 @media print {
 
   html, body {
@@ -158,16 +159,13 @@ body {
     margin: 0;
     box-shadow: none;
     border-radius: 0;
-
-    /* scale layout proportionally */
-    transform-origin: top left;
-    transform: scale(5.35);
   }
 
-  @page {
-    size: 850mm 2000mm;
-    margin: 0;
-  }
+}
+
+@page {
+  margin: 0;
+}
 
 }
 </style>
