@@ -1,28 +1,24 @@
-name: Export PDF
+name: Build PDF
+
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  export:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Convert HTML to PDF
-        uses: fifsky/html-to-pdf-action@master
-        with:
-          htmlFile: ./index.html
-          outputFile: ./banner.pdf
-          pdfOptions: >
-            {
-              "printBackground": true,
-              "width": "850mm",
-              "height": "2000mm",
-              "margin": {"top":"0","bottom":"0","left":"0","right":"0"}
-            }
+      - name: Install Chromium
+        run: sudo apt-get install -y chromium-browser
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: banner-pdf
-          path: ./banner.pdf
+      - name: Generate PDF
+        run: |
+          chromium-browser \
+          --headless \
+          --disable-gpu \
+          --print-to-pdf=banner.pdf \
+          --virtual-time-budget=5000 \
+          index.html
