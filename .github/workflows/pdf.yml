@@ -17,13 +17,14 @@ jobs:
       - name: Generate PDF
         run: |
           chromium-browser \
-          --headless \
-          --disable-gpu \
-          --print-to-pdf=banner.pdf \
-          --virtual-time-budget=5000 \
-          index.html
+            --headless \
+            --disable-gpu \
+            --no-sandbox \
+            --print-to-pdf=banner.pdf \
+            --virtual-time-budget=5000 \
+            index.html
 
-                - name: Upload PDF
+      - name: Upload PDF
         uses: actions/upload-artifact@v4
         with:
           name: banner-pdf
