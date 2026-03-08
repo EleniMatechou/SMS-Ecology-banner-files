@@ -509,5 +509,13 @@ window.addEventListener('load', () => {
   placeModelCloud('cloudDark');
 });
 </script>
+  <script>
+window.addEventListener("load", function () {
+  // wait for word clouds to render
+  setTimeout(function(){
+    window.status = "ready";
+  }, 2000);
+});
+</script>
 </body>
 </html>
