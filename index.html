@@ -144,33 +144,29 @@
 
   /* ── PRINT ── */
   @media print {
-    html, body {
-      margin: 0 !important;
-      padding: 0 !important;
-      background: white !important;
-    }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
 
-    body {
-      display: flex !important;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+  body {
+    display: block !important;
+  }
 
-    .banner {
-      width: auto;
-      height: 100%;
-      max-width: none;
-      max-height: none;
-      box-shadow: none;
-      border-radius: 0;
-    }
+  .banner {
+    width: 100%;       /* fill page width */
+    max-width: 600px;  /* your banner width */
+    margin: 0 auto;    /* center horizontally */
+    box-shadow: none;
+    border-radius: 0;
   }
 
   @page {
-    size: 850mm 2000mm;
+    size: 600px 850px;  /* match your banner dimensions */
     margin: 0;
   }
+}
 </style>
 </head>
 <body>
