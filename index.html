@@ -1,35 +1,97 @@
-@media print {
-  * { margin: 0 !important; padding: 0 !important; }
-  body {
-    background: none;
-    padding: 0 !important;
-    display: block;
-  }
-  .banner {
-    width: 850mm;
-    box-shadow: none;
-    border-radius: 0;
-  }
-  @page {
-    size: 850mm 2000mm;
-    margin: 0;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Banner</title>
 
-@media print {
-  body {
-    background: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: block !important;
-  }
-  .banner {
-    width: 100% !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-  }
-  @page {
-    margin: 0;
-  }
-}
+  <style>
+
+    /* ── BASE LAYOUT ───────────────────────── */
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .banner {
+      width: 600px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ── PRINT SETTINGS ────────────────────── */
+
+    @media print {
+
+      html,
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: none !important;
+      }
+
+      body {
+        display: block !important;
+      }
+
+      .banner {
+        width: 600px !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+
+      @page {
+        margin: 0;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="banner">
+
+    <div class="section">
+      <div class="title">
+        Example Banner Title
+      </div>
+
+      <div class="subtitle">
+        Replace this with your actual banner content
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
