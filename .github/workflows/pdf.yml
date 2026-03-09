@@ -20,21 +20,16 @@ jobs:
             await page.setViewport({width: 600, height: 2000, deviceScaleFactor: 2});
             await page.goto('file://' + process.cwd() + '/index.html', {waitUntil: 'networkidle2'});
             await new Promise(r => setTimeout(r, 3000));
-            const rect = await page.evaluate(() => {
-              const el = document.querySelector('.banner');
-              const r = el.getBoundingClientRect();
-              return {x: r.left, y: r.top, width: r.width, height: r.height};
-            });
-            await page.pdf({
-              path: 'banner.pdf',
-              width: rect.width + 'px',
-              height: rect.height + 'px',
-              printBackground: true,
-              margin: {top: '0', bottom: '0', left: '0', right: '0'}
-            });
+            const bannerEl = await page.$('.banner');
+            await bannerEl.screenshot({path: 'banner.png', type: 'png'});
             await browser.close();
           })();
           "
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install img2pdf
+      - run: python3 -c "import img2pdf; open('banner.pdf','wb').write(img2pdf.convert('banner.png'))"
       - uses: actions/upload-artifact@v4
         with:
           name: banner-pdf
