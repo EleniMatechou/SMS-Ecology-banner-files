@@ -11,8 +11,9 @@ jobs:
         with:
           node-version: 18
       - run: npm install puppeteer
-      - run: |
-          node -e "
+      - name: Screenshot banner
+        run: |
+          cat > capture.js << 'JSEOF'
           const puppeteer = require('puppeteer');
           (async () => {
             const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
@@ -24,7 +25,8 @@ jobs:
             await bannerEl.screenshot({path: 'banner.png', type: 'png'});
             await browser.close();
           })();
-          "
+          JSEOF
+          node capture.js
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
