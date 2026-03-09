@@ -1,31 +1,41 @@
-name: Build PDF
-
+name: Export PDF
 on:
   push:
-    branches: [ main ]
-
+    branches: [main]
 jobs:
-  build:
+  export:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Install Chromium
-        run: sudo apt-get install -y chromium-browser
-
-      - name: Generate PDF
-        run: |
-          chromium-browser \
-            --headless \
-            --disable-gpu \
-            --no-sandbox \
-            --print-to-pdf=banner.pdf \
-            --virtual-time-budget=5000 \
-            index.html
-
-      - name: Upload PDF
-        uses: actions/upload-artifact@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: npm install puppeteer
+      - run: |
+          node -e "
+          const puppeteer = require('puppeteer');
+          (async () => {
+            const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+            const page = await browser.newPage();
+            await page.setViewport({width: 620, height: 2000, deviceScaleFactor: 2});
+            await page.goto('file://' + process.cwd() + '/index.html', {waitUntil: 'networkidle2'});
+            await new Promise(r => setTimeout(r, 3000));
+            const rect = await page.evaluate(() => {
+              const el = document.querySelector('.banner');
+              const r = el.getBoundingClientRect();
+              return {x: r.left, y: r.top, width: r.width, height: r.height};
+            });
+            await page.pdf({
+              path: 'banner.pdf',
+              width: rect.width + 'px',
+              height: rect.height + 'px',
+              printBackground: true,
+              margin: {top: '0', bottom: '0', left: '0', right: '0'}
+            });
+            await browser.close();
+          })();
+          "
+      - uses: actions/upload-artifact@v4
         with:
           name: banner-pdf
           path: banner.pdf
