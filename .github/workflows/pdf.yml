@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install img2pdf
-      - run: python3 -c "import img2pdf; open('banner.pdf','wb').write(img2pdf.convert('banner.png'))"
+      - run: python3 -c "import img2pdf; open('banner.pdf','wb').write(img2pdf.convert('banner.png', layout_fun=img2pdf.get_layout_fun((img2pdf.mm_to_pt(850), img2pdf.mm_to_pt(2000)), fit=img2pdf.FitMode.into)))"
       - uses: actions/upload-artifact@v4
         with:
           name: banner-pdf
