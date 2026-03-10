@@ -115,7 +115,7 @@
 
   /* ── CHARTS ── */
   .charts-section {
-    padding: 26px 36px 120px;
+    padding: 60px 36px 86px;
     background: var(--white);
   }
   .charts-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -246,7 +246,7 @@
   <div class="charts-section">
     <div class="charts-row" style="align-items: center;">
       <div class="chart-card">
-        <div class="chart-body" style="padding: 4px;">
+        <div class="chart-body" style="padding: 4px; height: 190px; overflow: hidden;">
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 2px;">
             <img src="Duke_map_year1985.png" alt="1985" style="width: 100%; display: block;">
             <img src="Duke_map_year2000.png" alt="2000" style="width: 100%; display: block;">
@@ -320,7 +320,7 @@ function placeWords(containerId, words) {
 
     for (let step = 0; step < 600; step += 1.2) {
       const angle = step * 0.38 + Math.random() * 0.3;
-      const radiusX = step * 2.0;
+      const radiusX = step * 2.6;
       const radiusY = step * 0.9;
       const x = cx + radiusX * Math.cos(angle) - ew / 2;
       const y = cy + radiusY * Math.sin(angle) - eh / 2;
@@ -451,7 +451,7 @@ function placeModelCloud(containerId) {
   // 3. Artificial / Intelligence — right side
   const artEl = makeEl('Artificial', 30, 600, rp(modelPalette.gold), 1);
   const aw = artEl.offsetWidth, ah = artEl.offsetHeight;
-  const artX = W * 0.65;
+  const artX = W * 0.72;
   const artY = H * 0.55;
   artEl.style.left = artX + 'px';
   artEl.style.top  = artY + 'px';
