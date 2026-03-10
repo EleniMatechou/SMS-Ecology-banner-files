@@ -15,22 +15,23 @@
     --cream: #f4f7fb;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-   body {
+  html {
     background: var(--navy);
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
+  }
+  body {
+    background: var(--navy);
+    display: block;
+    margin: 0;
+    padding: 0;
     font-family: 'Source Sans 3', sans-serif;
   }
   .banner {
-    width: 600px;
-    background: var(--white);
-    border-radius: 4px;
+    width: 100%;
+    background: var(--navy);
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    box-shadow: none;
   }
-
-  /* ── HEADER ── */
   .header {
     background: linear-gradient(160deg, var(--navy) 0%, var(--blue) 100%);
     padding: 32px 40px 28px;
@@ -63,106 +64,34 @@
     margin-bottom: 18px;
   }
   .header h1 em { font-style: italic; color: var(--accent); }
-
-  .qm-logo-wrap {
-    display: flex;
-    justify-content: center;
-    opacity: 0.92;
-  }
-  .qm-logo-wrap svg {
-    width: 160px;
-    height: auto;
-  }
-
-  /* ── WORD CLOUD LIGHT ── */
-  .cloud-light {
-    background: var(--cream);
-    position: relative;
-  }
-  .cloud-canvas {
-    position: relative;
-    width: 100%;
-    height: 210px;
-  }
-
-  /* ── ANIMAL STRIP ── */
-  .animals {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    height: 190px;
-  }
+  .qm-logo-wrap { display: flex; justify-content: center; opacity: 0.92; }
+  .qm-logo-wrap svg { width: 160px; height: auto; }
+  .cloud-light { background: var(--cream); position: relative; }
+  .cloud-canvas { position: relative; width: 100%; height: 210px; }
+  .animals { display: grid; grid-template-columns: repeat(4, 1fr); height: 190px; }
   .animal-cell { position: relative; overflow: hidden; }
-  .animal-cell img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    filter: saturate(0.85); transition: filter 0.3s;
-  }
-  .animal-cell:hover img { filter: saturate(1.1); }
+  .animal-cell img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.85); }
   .animal-cell .overlay {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(13,43,78,0.45) 0%, transparent 55%);
     pointer-events: none;
   }
-  .divider {
-    height: 3px;
-    background: linear-gradient(to right, var(--navy), var(--sky), #4dac26, var(--accent));
-  }
-
-  /* ── WORD CLOUD DARK ── */
-  .cloud-dark {
-    background: linear-gradient(160deg, var(--navy) 0%, #14406b 100%);
-    position: relative;
-  }
-
-  /* ── CHARTS ── */
-  .charts-section {
-    padding: 22px 36px 28px;
-    background: var(--navy);
+  .divider { height: 3px; background: linear-gradient(to right, var(--navy), var(--sky), #4dac26, var(--accent)); }
+  .cloud-dark { background: linear-gradient(160deg, var(--navy) 0%, #14406b 100%); position: relative; }
+  .charts-section { padding: 22px 36px 28px; background: var(--navy); }
   .charts-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .chart-card {
-    background: var(--cream); border-radius: 6px; overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
-  }
-  }
-  .chart-title {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
-    text-transform: uppercase; color: var(--navy);
-    padding: 8px 10px 6px; background: #eaf0f8;
-    border-bottom: 1px solid #d5e2ef;
-  }
+  .chart-card { background: var(--cream); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
   .chart-body { padding: 10px; }
-
-  /* ── FOOTER ── */
   .footer {
     background: var(--navy); padding: 14px 40px;
     display: flex; justify-content: space-between; align-items: center;
   }
   .footer-text { font-size: 11px; color: rgba(255,255,255,0.5); }
   .footer-accent { font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 1px; }
-
-  /* ── PRINT ── */
-  @media print {
-    body {
-      background: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-      display: block !important;
-    }
-    .banner {
-      width: 100% !important;
-      box-shadow: none !important;
-      border-radius: 0 !important;
-      margin: 0 !important;
-    }
-    @page {
-      margin: 0;
-    }
-  }
 </style>
 </head>
 <body>
 <div class="banner">
-
-  <!-- HEADER -->
   <div class="header">
     <div class="header-tag">School of Mathematical Sciences</div>
     <h1>Mathematical Sciences <em>for</em><br>Conservation &amp; Ecology</h1>
@@ -206,12 +135,10 @@
     </div>
   </div>
 
-  <!-- DATA METHODS WORD CLOUD (light) -->
   <div class="cloud-light">
     <div class="cloud-canvas" id="cloudLight"></div>
   </div>
 
-  <!-- ANIMAL STRIP -->
   <div class="divider"></div>
   <div class="animals">
     <div class="animal-cell" style="position: relative;">
@@ -237,12 +164,10 @@
   </div>
   <div class="divider"></div>
 
-  <!-- MODELLING WORD CLOUD (dark) -->
   <div class="cloud-dark">
     <div class="cloud-canvas" id="cloudDark"></div>
   </div>
 
-  <!-- CHARTS -->
   <div class="charts-section">
     <div class="charts-row" style="align-items: center;">
       <div class="chart-card">
@@ -268,10 +193,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-<!-- BOTTOM FILL -->
-  <div style="background: var(--navy); padding: 20px 0;"></div>
-
   <div class="footer">
     <span class="footer-text">https://www.seresearch.qmul.ac.uk/cpsd/research/statisticalecology/</span>
     <span class="footer-accent">QMUL · SMS</span>
@@ -285,68 +206,29 @@ const darkBlues = [
   '#1a4f8a','#1d5499','#215ea8','#2166ac','#246ab0',
   '#2a75bf','#2e7dc8','#3280ca','#3a8fc4','#4393c3',
 ];
-
-function randBlue(pool) {
-  return pool[Math.floor(Math.random() * pool.length)];
-}
+function randBlue(pool) { return pool[Math.floor(Math.random() * pool.length)]; }
 
 function placeWords(containerId, words) {
   const container = document.getElementById(containerId);
-  const W = container.offsetWidth;
-  const H = container.offsetHeight;
+  const W = container.offsetWidth, H = container.offsetHeight;
   const placed = [];
   const shuffled = [...words].sort(() => Math.random() - 0.5);
-
   for (const word of shuffled) {
     const el = document.createElement('span');
     el.textContent = word.text;
-    el.style.cssText = `
-      position: absolute;
-      font-size: ${word.size}px;
-      font-weight: ${word.weight || 400};
-      color: ${word.color};
-      white-space: nowrap;
-      line-height: 1;
-      font-family: 'Source Sans 3', sans-serif;
-      letter-spacing: -0.2px;
-      visibility: hidden;
-    `;
+    el.style.cssText = `position:absolute;font-size:${word.size}px;font-weight:${word.weight||400};color:${word.color};white-space:nowrap;line-height:1;font-family:'Source Sans 3',sans-serif;letter-spacing:-0.2px;visibility:hidden;`;
     container.appendChild(el);
-
-    const ew = el.offsetWidth;
-    const eh = el.offsetHeight;
-    const cx = W * 0.5;
-    const cy = H * 0.5;
+    const ew = el.offsetWidth, eh = el.offsetHeight;
+    const cx = W*0.5, cy = H*0.5;
     let ok = false;
-    const PAD = 2;
-    const HPAD = 2;
-
     for (let step = 0; step < 600; step += 1.2) {
-      const angle = step * 0.38 + Math.random() * 0.3;
-      const radiusX = step * 0.8;
-      const radiusY = step * 0.8;
-      const x = cx + radiusX * Math.cos(angle) - ew / 2;
-      const y = cy + radiusY * Math.sin(angle) - eh / 2;
-
-      if (x < PAD || x + ew > W - PAD || y < HPAD || y + eh > H - HPAD) continue;
-
-      const overlaps = placed.some(p =>
-        x < p.x + p.w + 9 &&
-        x + ew + 9 > p.x &&
-        y < p.y + p.h + 5 &&
-        y + eh + 5 > p.y
-      );
-
-      if (!overlaps) {
-        el.style.left = x + 'px';
-        el.style.top  = y + 'px';
-        el.style.visibility = 'visible';
-        placed.push({ x, y, w: ew, h: eh });
-        ok = true;
-        break;
-      }
+      const angle = step*0.38 + Math.random()*0.3;
+      const x = cx + step*0.8*Math.cos(angle) - ew/2;
+      const y = cy + step*0.8*Math.sin(angle) - eh/2;
+      if (x<2||x+ew>W-2||y<2||y+eh>H-2) continue;
+      const overlaps = placed.some(p=>x<p.x+p.w+9&&x+ew+9>p.x&&y<p.y+p.h+5&&y+eh+5>p.y);
+      if (!overlaps) { el.style.left=x+'px'; el.style.top=y+'px'; el.style.visibility='visible'; placed.push({x,y,w:ew,h:eh}); ok=true; break; }
     }
-
     if (!ok) container.removeChild(el);
   }
 }
@@ -374,25 +256,14 @@ function rp(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 
 function placeModelCloud(containerId) {
   const container = document.getElementById(containerId);
-  const W = container.offsetWidth;
-  const H = container.offsetHeight;
+  const W = container.offsetWidth, H = container.offsetHeight;
   const placed = [];
   container.style.position = 'relative';
 
   function makeEl(text, size, weight, color, opacity) {
     const el = document.createElement('span');
     el.textContent = text;
-    el.style.cssText = `
-      position: absolute;
-      font-size: ${size}px;
-      font-weight: ${weight};
-      color: ${color};
-      opacity: ${opacity ?? 1};
-      white-space: nowrap;
-      line-height: 1;
-      font-family: 'Source Sans 3', sans-serif;
-      visibility: hidden;
-    `;
+    el.style.cssText = `position:absolute;font-size:${size}px;font-weight:${weight};color:${color};opacity:${opacity??1};white-space:nowrap;line-height:1;font-family:'Source Sans 3',sans-serif;visibility:hidden;`;
     container.appendChild(el);
     return el;
   }
@@ -400,82 +271,48 @@ function placeModelCloud(containerId) {
   function tryPlace(el, cx, cy, maxR, yScale) {
     const ew = el.offsetWidth, eh = el.offsetHeight;
     for (let step = 0; step < 500; step += 1.5) {
-      const angle = step * 0.4;
-      const r = Math.min(step * 0.9, maxR);
-      const x = cx + r * Math.cos(angle) - ew / 2;
-      const y = cy + r * Math.sin(angle) * (yScale||0.6) - eh / 2;
-      if (x < 4 || x + ew > W - 4 || y < 4 || y + eh > H - 4) continue;
-      const overlaps = placed.some(p =>
-        x < p.x + p.w + 8 && x + ew + 8 > p.x &&
-        y < p.y + p.h + 5 && y + eh + 5 > p.y
-      );
-      if (!overlaps) {
-        el.style.left = x + 'px';
-        el.style.top  = y + 'px';
-        el.style.visibility = 'visible';
-        placed.push({ x, y, w: ew, h: eh });
-        return { x, y, w: ew, h: eh };
-      }
+      const angle = step*0.4, r = Math.min(step*0.9, maxR);
+      const x = cx + r*Math.cos(angle) - ew/2;
+      const y = cy + r*Math.sin(angle)*(yScale||0.6) - eh/2;
+      if (x<4||x+ew>W-4||y<4||y+eh>H-4) continue;
+      const overlaps = placed.some(p=>x<p.x+p.w+8&&x+ew+8>p.x&&y<p.y+p.h+5&&y+eh+5>p.y);
+      if (!overlaps) { el.style.left=x+'px'; el.style.top=y+'px'; el.style.visibility='visible'; placed.push({x,y,w:ew,h:eh}); return {x,y,w:ew,h:eh}; }
     }
-    container.removeChild(el);
-    return null;
+    container.removeChild(el); return null;
   }
 
-  // 1. Place 'models' at true centre
   const modEl = makeEl('models', 52, 800, 'rgba(255,255,255,0.18)', 1);
   const mw = modEl.offsetWidth, mh = modEl.offsetHeight;
-  const mcx = (W - mw) / 2, mcy = (H - mh) / 2;
-  modEl.style.left = mcx + 'px';
-  modEl.style.top  = mcy + 'px';
-  modEl.style.visibility = 'visible';
-  placed.push({ x: mcx, y: mcy, w: mw, h: mh });
-  const modelCx = mcx + mw / 2;
-  const modelCy = mcy + mh / 2;
+  const mcx = (W-mw)/2, mcy = (H-mh)/2;
+  modEl.style.left=mcx+'px'; modEl.style.top=mcy+'px'; modEl.style.visibility='visible';
+  placed.push({x:mcx,y:mcy,w:mw,h:mh});
+  const modelCx = mcx+mw/2, modelCy = mcy+mh/2;
 
-  // 2. Bayesian / inference — left side
   const bayEl = makeEl('Bayesian', 30, 700, rp(modelPalette.white), 1);
-  const bw = bayEl.offsetWidth, bh = bayEl.offsetHeight;
-  const bayX = W * 0.05;
-  const bayY = H * 0.2;
-  bayEl.style.left = bayX + 'px';
-  bayEl.style.top  = bayY + 'px';
-  bayEl.style.visibility = 'visible';
-  placed.push({ x: bayX, y: bayY, w: bw, h: bh });
+  const bw=bayEl.offsetWidth, bh=bayEl.offsetHeight, bayX=W*0.05, bayY=H*0.2;
+  bayEl.style.left=bayX+'px'; bayEl.style.top=bayY+'px'; bayEl.style.visibility='visible';
+  placed.push({x:bayX,y:bayY,w:bw,h:bh});
 
   const infEl = makeEl('inference', 30, 700, rp(modelPalette.white), 1);
-  const iw = infEl.offsetWidth, ih = infEl.offsetHeight;
-  const infX = bayX + 20;
-  const infY = bayY + bh + 2;
-  infEl.style.left = infX + 'px';
-  infEl.style.top  = infY + 'px';
-  infEl.style.visibility = 'visible';
-  placed.push({ x: infX, y: infY, w: iw, h: ih });
+  const iw=infEl.offsetWidth, ih=infEl.offsetHeight, infX=bayX+20, infY=bayY+bh+2;
+  infEl.style.left=infX+'px'; infEl.style.top=infY+'px'; infEl.style.visibility='visible';
+  placed.push({x:infX,y:infY,w:iw,h:ih});
 
-  // 3. Artificial / Intelligence — right side
   const artEl = makeEl('Artificial', 30, 600, rp(modelPalette.gold), 1);
-  const aw = artEl.offsetWidth, ah = artEl.offsetHeight;
-  const artX = W * 0.65;
-  const artY = H * 0.55;
-  artEl.style.left = artX + 'px';
-  artEl.style.top  = artY + 'px';
-  artEl.style.visibility = 'visible';
-  placed.push({ x: artX, y: artY, w: aw, h: ah });
+  const aw=artEl.offsetWidth, ah=artEl.offsetHeight, artX=W*0.65, artY=H*0.55;
+  artEl.style.left=artX+'px'; artEl.style.top=artY+'px'; artEl.style.visibility='visible';
+  placed.push({x:artX,y:artY,w:aw,h:ah});
 
   const intEl = makeEl('Intelligence', 30, 600, rp(modelPalette.gold), 1);
-  const ntw = intEl.offsetWidth, nth = intEl.offsetHeight;
-  const intX = artX + 20;
-  const intY = artY + ah + 2;
-  intEl.style.left = intX + 'px';
-  intEl.style.top  = intY + 'px';
-  intEl.style.visibility = 'visible';
-  placed.push({ x: intX, y: intY, w: ntw, h: nth });
+  const ntw=intEl.offsetWidth, nth=intEl.offsetHeight, intX=artX+20, intY=artY+ah+2;
+  intEl.style.left=intX+'px'; intEl.style.top=intY+'px'; intEl.style.visibility='visible';
+  placed.push({x:intX,y:intY,w:ntw,h:nth});
 
-  // 4. Orbital words around 'models'
   const orbitalWords = [
-    { text: 'hierarchical',    size: 22, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx - 40, cy: modelCy - 35 },
-    { text: 'state-space',     size: 20, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx + 40, cy: modelCy - 55 },
-    { text: 'spatio-temporal', size: 18, weight: 400, color: rp(modelPalette.lightBlue), cx: modelCx - 40, cy: modelCy + 35 },
-    { text: 'mixture',         size: 19, weight: 500, color: rp(modelPalette.lightBlue), cx: modelCx + 40, cy: modelCy + 35 },
+    { text: 'hierarchical',    size: 22, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx-40, cy: modelCy-35 },
+    { text: 'state-space',     size: 20, weight: 600, color: rp(modelPalette.lightBlue), cx: modelCx+40, cy: modelCy-55 },
+    { text: 'spatio-temporal', size: 18, weight: 400, color: rp(modelPalette.lightBlue), cx: modelCx-40, cy: modelCy+35 },
+    { text: 'mixture',         size: 19, weight: 500, color: rp(modelPalette.lightBlue), cx: modelCx+40, cy: modelCy+35 },
   ];
   for (const w of orbitalWords) {
     const el = makeEl(w.text, w.size, w.weight, w.color, 0.9);
