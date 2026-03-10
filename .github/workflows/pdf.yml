@@ -18,7 +18,7 @@ jobs:
           (async () => {
             const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
             const page = await browser.newPage();
-            await page.setViewport({width: 600, height: 2000, deviceScaleFactor: 1});
+            await page.setViewport({width: 600, height: 2000, deviceScaleFactor: 2});
             await page.goto('file://' + process.cwd() + '/index.html', {waitUntil: 'networkidle2'});
             await new Promise(r => setTimeout(r, 3000));
             const bannerEl = await page.$('.banner');
